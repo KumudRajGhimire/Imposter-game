@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { getRandomWord, categories } from './data/words';
 import confetti from 'canvas-confetti';
 import { Play, RefreshCcw, User, Ghost, Eye, CheckCircle } from 'lucide-react';
-
+import { Analytics } from "@vercel/analytics/next"
 const App = () => {
   const [gameState, setGameState] = useState('setup'); // setup, reveal, playing
   const [playerCount, setPlayerCount] = useState(3);
@@ -30,7 +30,7 @@ const App = () => {
       audioRef.current.play().catch(e => console.log("Audio play failed", e));
     }
   };
-
+  <Analytics />
   const toggleCategory = (cat) => {
     if (selectedCategories.includes(cat)) {
       if (selectedCategories.length > 1) {
