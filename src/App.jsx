@@ -105,7 +105,7 @@ const App = () => {
             </div>
 
             <div className="sheet-main">
-              <div>
+              <div style={{ flexShrink: 0 }}>
                 <h3 style={{ marginBottom: '8px' }}>Categories:</h3>
                 <div className="category-chips">
                   {Object.keys(categories).map(cat => (
@@ -120,7 +120,7 @@ const App = () => {
                 </div>
               </div>
 
-              <div>
+              <div style={{ flexShrink: 0 }}>
                 <h3 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   Players: {playerCount}
                   <button
@@ -151,7 +151,7 @@ const App = () => {
                 )}
               </div>
 
-              <div>
+              <div style={{ flexShrink: 0 }}>
                 <h3>Imposters: {imposterCount}</h3>
                 <input
                   type="range"
@@ -181,10 +181,10 @@ const App = () => {
             className="notebook-page"
           >
             <div className="sheet-header">
-              <h2 style={{ textAlign: 'center' }}>{players[currentPlayerIndex].name}</h2>
+              <h2 style={{ textAlign: 'center' }}>{players[currentPlayerIndex]?.name}</h2>
             </div>
 
-            <div className="sheet-main" style={{ justifyContent: 'center' }}>
+            <div className="sheet-main">
               <div
                 className="sketch-border reveal-card"
                 onClick={() => !isRevealed && setIsRevealed(true)}
@@ -197,17 +197,17 @@ const App = () => {
                   </>
                 ) : (
                   <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    {players[currentPlayerIndex].role === 'imposter' ? (
+                    {players[currentPlayerIndex]?.role === 'imposter' ? (
                       <>
                         <Ghost size={60} color="var(--color-accent)" />
-                        <h1 style={{ color: 'var(--color-accent)', fontSize: '1.8rem', margin: '10px 0' }}>YOU ARE THE IMPOSTER</h1>
+                        <h1 style={{ color: 'var(--color-accent)', fontSize: '1.8rem', margin: '15px 0' }}>YOU ARE THE IMPOSTER</h1>
                         <p>Blend in, don't get caught!</p>
                       </>
                     ) : (
                       <>
                         <User size={60} />
                         <h3 style={{ margin: '10px 0', opacity: 0.7 }}>Category: {gameData.category}</h3>
-                        <h1 style={{ fontSize: '2.5rem' }}>{gameData.word}</h1>
+                        <h1 style={{ fontSize: '2.5rem', textAlign: 'center' }}>{gameData.word}</h1>
                       </>
                     )}
                   </div>
@@ -216,7 +216,7 @@ const App = () => {
             </div>
 
             <div className="sheet-footer">
-              <div style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
+              <div style={{ height: '55px', display: 'flex', alignItems: 'flex-end' }}>
                 {isRevealed && (
                   <button className="wiggle" onClick={handleNext}>
                     {currentPlayerIndex < playerCount - 1 ? 'NEXT PLAYER' : 'DONE'}
@@ -247,9 +247,9 @@ const App = () => {
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
                   {players.map((p) => (
-                    <div key={p.id} style={{ textAlign: 'center', border: '1px dashed #ccc', padding: '10px' }}>
+                    <div key={p.id} style={{ textAlign: 'center', border: '1px dashed #ccc', padding: '10px', borderRadius: '4px' }}>
                       <CheckCircle size={20} style={{ color: '#44bd32', margin: '0 auto 5px' }} />
-                      <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '0.9rem' }}>
+                      <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '0.8rem' }}>
                         {p.name}
                       </div>
                     </div>
@@ -257,7 +257,7 @@ const App = () => {
                 </div>
               </div>
 
-              <div style={{ opacity: 0.6, fontSize: '0.9rem' }}>
+              <div style={{ opacity: 0.7, fontSize: '0.95rem', alignSelf: 'center', width: '100%' }}>
                 <p>1. Everyone describes the word without saying it.</p>
                 <p>2. Imposter tries to guess or blend in.</p>
                 <p>3. Finally, vote who is sussy!</p>
